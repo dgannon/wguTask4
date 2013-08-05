@@ -1,4 +1,4 @@
-package StudentDB;
+package wgutask4;
 
 public class Undergraduate extends Student {
 

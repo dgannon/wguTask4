@@ -1,4 +1,4 @@
-package StudentDB;
+package wgutask4;
 
 public abstract class Student {
 
@@ -8,6 +8,10 @@ public abstract class Student {
 	private String gpa;
 	private String status;
 	private String mentor;
+
+	public Student() {
+		throw new UnsupportedOperationException();
+	}
 
 	public void getStudentId() {
 		throw new UnsupportedOperationException();
@@ -30,7 +34,7 @@ public abstract class Student {
 	 * @param firstName
 	 */
 	public void setFirstName(int firstName) {
-		this.firstName = firstName;
+		throw new UnsupportedOperationException();
 	}
 
 	public void getLastName() {
@@ -42,7 +46,7 @@ public abstract class Student {
 	 * @param lastName
 	 */
 	public void setLastName(int lastName) {
-		this.lastName = lastName;
+		throw new UnsupportedOperationException();
 	}
 
 	public void getGpa() {
@@ -54,7 +58,7 @@ public abstract class Student {
 	 * @param gpa
 	 */
 	public void setGpa(int gpa) {
-		this.gpa = gpa;
+		throw new UnsupportedOperationException();
 	}
 
 	public void getStatus() {
@@ -66,7 +70,7 @@ public abstract class Student {
 	 * @param status
 	 */
 	public void setStatus(int status) {
-		this.status = status;
+		throw new UnsupportedOperationException();
 	}
 
 	public void getMentor() {
@@ -78,7 +82,7 @@ public abstract class Student {
 	 * @param mentor
 	 */
 	public void setMentor(int mentor) {
-		this.mentor = mentor;
+		throw new UnsupportedOperationException();
 	}
 
 	public abstract void calculateTuition();
@@ -91,19 +95,13 @@ public abstract class Student {
 		throw new UnsupportedOperationException();
 	}
 
-	public abstract void update() {
-		throw new UnsupportedOperationException();
-	}
+	public abstract void update();
 
 	public void delete() {
 		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
-		throw new UnsupportedOperationException();
-	}
-
-	public Student() {
 		throw new UnsupportedOperationException();
 	}
 

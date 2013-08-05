@@ -1,4 +1,4 @@
-package StudentDB;
+package wgutask4;
 
 public class Parttime extends Student {
 
@@ -15,4 +15,5 @@ public class Parttime extends Student {
 	public void setCompany(int company) {
 		throw new UnsupportedOperationException();
 	}
+
 }

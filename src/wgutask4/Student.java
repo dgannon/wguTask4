@@ -1,108 +1,96 @@
 package wgutask4;
 
+import java.util.logging.*;
+
 public abstract class Student {
 
-	private int studentId;
-	private String firstName;
-	private String lastName;
-	private String gpa;
-	private String status;
-	private String mentor;
+    protected int studentId;
+    protected String firstName;
+    protected String lastName;
+    protected double gpa;
+    protected String status;
+    protected String mentor;
+    
+    protected static Logger logger = Logger.getLogger("wgutask4.student");
 
-	public Student() {
-		throw new UnsupportedOperationException();
-	}
+    public Student() {
+       logger.fine("Calling Student Default Constructor");
+       this.setStudentId(0);
+       this.setFirstName("");
+       this.setLastName("");
+       this.setGpa(0);
+       this.setStatus("");
+       this.setMentor("");
+    }
+    
+    public Student(int studentId, String firstName, String lastName, double gpa, String status, String mentor){
+       logger.fine("Calling Student Overridden Constructor");
+       this.setStudentId(0);
+       this.setFirstName(firstName);
+       this.setLastName(lastName);
+       this.setGpa(gpa);
+       this.setStatus(status);
+       this.setMentor(mentor);
+    }
 
-	public void getStudentId() {
-		throw new UnsupportedOperationException();
-	}
+    public int getStudentId() {
+        return this.studentId;
+    }
 
-	/**
-	 * 
-	 * @param studentId
-	 */
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
 
-	public void getFirstName() {
-		throw new UnsupportedOperationException();
-	}
+    public String getFirstName() {
+        return this.firstName;
+    }
 
-	/**
-	 * 
-	 * @param firstName
-	 */
-	public void setFirstName(int firstName) {
-		throw new UnsupportedOperationException();
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void getLastName() {
-		throw new UnsupportedOperationException();
-	}
+    public String getLastName() {
+        return this.lastName;
+    }
 
-	/**
-	 * 
-	 * @param lastName
-	 */
-	public void setLastName(int lastName) {
-		throw new UnsupportedOperationException();
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void getGpa() {
-		throw new UnsupportedOperationException();
-	}
+    public Double getGpa() {
+        return this.gpa;
+    }
 
-	/**
-	 * 
-	 * @param gpa
-	 */
-	public void setGpa(int gpa) {
-		throw new UnsupportedOperationException();
-	}
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
 
-	public void getStatus() {
-		throw new UnsupportedOperationException();
-	}
+    public String getStatus() {
+        return this.status;
+    }
 
-	/**
-	 * 
-	 * @param status
-	 */
-	public void setStatus(int status) {
-		throw new UnsupportedOperationException();
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void getMentor() {
-		throw new UnsupportedOperationException();
-	}
+    public String getMentor() {
+        return this.mentor;
+    }
 
-	/**
-	 * 
-	 * @param mentor
-	 */
-	public void setMentor(int mentor) {
-		throw new UnsupportedOperationException();
-	}
+    public void setMentor(String mentor) {
+        this.mentor = mentor;
+    }
 
-	public abstract void calculateTuition();
+    public abstract void calculateTuition();
 
-	public void add() {
-		throw new UnsupportedOperationException();
-	}
+    public abstract void add();
 
-	public void query() {
-		throw new UnsupportedOperationException();
-	}
+    public abstract void query();
 
-	public abstract void update();
+    public abstract void update();
 
-	public void delete() {
-		throw new UnsupportedOperationException();
-	}
+    public abstract void delete();
 
-	public String toString() {
-		throw new UnsupportedOperationException();
-	}
-
+    @Override
+    public abstract String toString();
 }

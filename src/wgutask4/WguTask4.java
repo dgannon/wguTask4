@@ -18,6 +18,9 @@ public class WguTask4 {
         System.out.println("Hello to Dustin's Student Database!");
         runToStringTests();
         runToSqlTests();
+        
+        MainGui myApp = new MainGui();
+        myApp.setVisible(true);
     }
 
     private static void runToStringTests() {
@@ -47,7 +50,7 @@ public class WguTask4 {
         System.out.println("TEST =============== runToSqlTests ==============");
         System.out.println("TEST = Create a sample student object in the code and try and write it to the SQL database");
         
-        Parttime partimerSql = new Parttime(-1, "Test", "Parttimer", 2.0, "Parttime", "Rey Armijo", "Symitar");
+        Parttime partimerSql = new Parttime(3, "Test", "Parttimer4", 2.0, "Parttime", "Rey Armijo", "Symitar");
         Undergraduate undergradSql = new Undergraduate(-1, "Test", "Undergrad", 3.0, "Undergrad", "Rey Armijo", "Symitar");
         Graduate gradSql = new Graduate(-1, "Test", "Grad2", 4.0, "Grad", "Rey Armijo", "ThesisTitleTest", "ThesisAdvisorTest");
 
@@ -60,7 +63,15 @@ public class WguTask4 {
         //Try to add them to Sql Database
         System.out.println("Try to add them to Sql Database");
         partimerSql.add();
+        
         //undergradSql.add();
         //gradSql.add();
+        
+        //Try and Select them from the Database
+        System.out.println("Try and Select them from the Database");
+        System.out.println(partimerSql.query(1).toString());
+        
+        //Try and Delete an item 
+        // Run the MAIN Gui
     }
 }

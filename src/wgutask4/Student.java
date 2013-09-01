@@ -83,13 +83,13 @@ public abstract class Student {
 
     public abstract void calculateTuition();
 
-    public abstract void add();
+    public abstract String add();
 
-    public abstract void query();
+    public abstract String query(int studentId);
 
-    public abstract void update();
+    public abstract String update(int studentId);
 
-    public abstract void delete();
+    public abstract String delete(int studentId);
 
     @Override
     public abstract String toString();

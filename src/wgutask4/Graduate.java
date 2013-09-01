@@ -43,18 +43,17 @@ public class Graduate extends Student {
     }
 
     @Override
-    public void update() {
+    public String update(int studentId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void add() {
+    public String add() {
         Statement stmt = null;
 
         try {
             Connect conn = new Connect();
             stmt = conn.makeStatement();
-
 
             //Create SQL statement to insert
 
@@ -81,7 +80,7 @@ public class Graduate extends Student {
     }
 
     @Override
-    public void query() {
+    public String query(int studentId) {
         Statement stmt = null;
         ResultSet rs = null;
         String output = " ";
@@ -93,9 +92,8 @@ public class Graduate extends Student {
             rs = stmt.executeQuery(sqlst);
 
             //Parse the result set returned and print
-
             while (rs.next()) {
-                this.setStudentId(rs.getInt("studentID"));
+                //this.setStudentId(rs.getInt("studentID"));
                 this.setFirstName(rs.getString("firstName"));
                 this.setLastName(rs.getString("lastName"));
                 this.setGpa(rs.getDouble("gpa"));
@@ -119,7 +117,7 @@ public class Graduate extends Student {
     }
 
     @Override
-    public void delete() {
+    public String delete(int studentId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

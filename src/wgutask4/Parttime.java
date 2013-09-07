@@ -86,7 +86,7 @@ public class Parttime extends Student {
 
             stmt.close();
             conn.close();
-            System.out.println("Successfully added student to the database");
+            System.out.println("Successfully added Parttime Student to the database");
             return "";
 
         } catch (SQLException e) {

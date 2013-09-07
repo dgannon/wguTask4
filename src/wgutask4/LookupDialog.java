@@ -27,10 +27,18 @@ public class LookupDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupStudentType = new javax.swing.ButtonGroup();
         jLabelDialogTitle = new javax.swing.JLabel();
         jLabelLookupStudent = new javax.swing.JLabel();
         jTextFieldStudentIDEntered = new javax.swing.JTextField();
         jButtonOk = new javax.swing.JButton();
+        jRadioButtonPartTime = new javax.swing.JRadioButton();
+        jRadioButtonUnderGraduate = new javax.swing.JRadioButton();
+        jRadioButtonGraduate = new javax.swing.JRadioButton();
+
+        buttonGroupStudentType.add(jRadioButtonPartTime);
+        buttonGroupStudentType.add(jRadioButtonUnderGraduate);
+        buttonGroupStudentType.add(jRadioButtonGraduate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,6 +54,12 @@ public class LookupDialog extends javax.swing.JDialog {
             }
         });
 
+        jRadioButtonPartTime.setText("Part Time");
+
+        jRadioButtonUnderGraduate.setText("Under Graduate");
+
+        jRadioButtonGraduate.setText("Graduate");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -54,15 +68,19 @@ public class LookupDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelDialogTitle)
-                        .addGap(0, 80, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelLookupStudent)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldStudentIDEntered))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonOk)))
+                        .addComponent(jButtonOk))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDialogTitle)
+                            .addComponent(jRadioButtonUnderGraduate)
+                            .addComponent(jRadioButtonPartTime)
+                            .addComponent(jRadioButtonGraduate))
+                        .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -74,9 +92,19 @@ public class LookupDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLookupStudent)
                     .addComponent(jTextFieldStudentIDEntered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonOk)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonOk)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButtonPartTime)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButtonUnderGraduate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButtonGraduate)
+                        .addContainerGap(34, Short.MAX_VALUE))))
         );
 
         pack();
@@ -128,13 +156,28 @@ public class LookupDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupStudentType;
     private javax.swing.JButton jButtonOk;
     private javax.swing.JLabel jLabelDialogTitle;
     private javax.swing.JLabel jLabelLookupStudent;
+    private javax.swing.JRadioButton jRadioButtonGraduate;
+    private javax.swing.JRadioButton jRadioButtonPartTime;
+    private javax.swing.JRadioButton jRadioButtonUnderGraduate;
     private javax.swing.JTextField jTextFieldStudentIDEntered;
     // End of variables declaration//GEN-END:variables
 
-    public String getStudentIDEntered() {
-        return jTextFieldStudentIDEntered.getText();
+    public int getStudentIDEntered() {
+        return Integer.parseInt(jTextFieldStudentIDEntered.getText());
     }
+    
+    public String getStudentTypeEntered(){
+        if(jRadioButtonPartTime.isSelected()) {
+            return "parttime";
+        }else if(jRadioButtonUnderGraduate.isSelected()) {
+            return "graduate";
+        }else if(jRadioButtonGraduate.isSelected()) {
+            return "undergraduate";
+        } else return null;
+    }
+        
 }

@@ -26,7 +26,7 @@ public class MainGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupPartUnderGradFlag = new javax.swing.ButtonGroup();
+        buttonGroupStudentTypeFlag = new javax.swing.ButtonGroup();
         jLabelTitle = new javax.swing.JLabel();
         jLabelStudentID = new javax.swing.JLabel();
         jLabelFirstName = new javax.swing.JLabel();
@@ -60,6 +60,10 @@ public class MainGui extends javax.swing.JFrame {
         jRadioButtonPartTime = new javax.swing.JRadioButton();
         jRadioButtonUndergraduate = new javax.swing.JRadioButton();
         jRadioButtonGraduate = new javax.swing.JRadioButton();
+
+        buttonGroupStudentTypeFlag.add(jRadioButtonPartTime);
+        buttonGroupStudentTypeFlag.add(jRadioButtonUndergraduate);
+        buttonGroupStudentTypeFlag.add(jRadioButtonGraduate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +102,11 @@ public class MainGui extends javax.swing.JFrame {
         });
 
         jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         jButtonLookup.setText("Lookup");
         jButtonLookup.addActionListener(new java.awt.event.ActionListener() {
@@ -273,53 +282,132 @@ public class MainGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClearAllFieldsActionPerformed
 
     private void jButtonLookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLookupActionPerformed
-        
+
         // Clear Form from any previous data
         this.clearFormValues();
-        
+
         // Create Modal Window to Prompt for Student ID
         LookupDialog studentLookupDialog = new LookupDialog(this, true);
         studentLookupDialog.setVisible(rootPaneCheckingEnabled);
-        
-        jTextFieldStudentId.setText(studentLookupDialog.getStudentIDEntered());
-        
+
+        if (studentLookupDialog.getStudentTypeEntered().equals("parttime")) {
+            Student studentRecord = new Parttime();
+            studentRecord.query(studentLookupDialog.getStudentIDEntered());
+            this.setFormValues((Parttime) studentRecord);
+        } else if (studentLookupDialog.getStudentTypeEntered().equals("undergraduate")) {
+            Student studentRecord = new Parttime();
+            studentRecord = new Undergraduate();
+            studentRecord.query(studentLookupDialog.getStudentIDEntered());
+            this.setFormValues((Undergraduate) studentRecord);
+        } else if (studentLookupDialog.getStudentTypeEntered().equals("graduate")) {
+            Student studentRecord = new Parttime();
+            studentRecord = new Graduate();
+            studentRecord.query(studentLookupDialog.getStudentIDEntered());
+            this.setFormValues((Graduate) studentRecord);
+        } else {
+            System.err.println("No student object match");
+        }
+
         // Create object from SQL Database Call
-        Student studentRecord = new Parttime();
-        studentRecord.query(Integer.parseInt(jTextFieldStudentId.getText()));
         
-        this.setFormValues(studentRecord);
+        
     }//GEN-LAST:event_jButtonLookupActionPerformed
 
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
-        Student studentRecord = new Parttime();
+        if (jRadioButtonPartTime.isSelected()) {
+            Parttime s = new Parttime();
+            s.setFirstName(jTextFieldFirstName.getText());
+            s.setLastName(jTextFieldLastName.getText());
+            s.setGpa(Double.parseDouble(jTextFieldGpa.getText()));
+            s.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            s.setMentor(jTextFieldMentor.getText());
+            s.setCompany(jTextFieldCompany.getText());
+            s.add();
+            this.clearFormValues();
+        } if (jRadioButtonUndergraduate.isSelected()) {
+            Undergraduate s = new Undergraduate();
+            s.setFirstName(jTextFieldFirstName.getText());
+            s.setLastName(jTextFieldLastName.getText());
+            s.setGpa(Double.parseDouble(jTextFieldGpa.getText()));
+            s.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            s.setMentor(jTextFieldMentor.getText());
+            s.setLevel(jComboBoxLevel.getSelectedItem().toString());
+            s.add();
+            this.clearFormValues();
+        } 
+        if (jRadioButtonGraduate.isSelected()) {
+            Graduate s = new Graduate();
+            s.setFirstName(jTextFieldFirstName.getText());
+            s.setLastName(jTextFieldLastName.getText());
+            s.setGpa(Double.parseDouble(jTextFieldGpa.getText()));
+            s.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            s.setMentor(jTextFieldMentor.getText());
+            s.setThesisTitle(jTextFieldThesisTitle.getText());
+            s.setThesisAdvisor(jTextFieldThesisAdvisor.getText());
+            s.add();
+            this.clearFormValues();
+        } 
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
-    private void setFormValues(Student s) {
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        LookupDialog studentLookupDialog = new LookupDialog(this, true);
+        studentLookupDialog.setVisible(rootPaneCheckingEnabled);
+        
+        //Todo: implment this crap
+        
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void setFormValues(Parttime s) {
         jTextFieldStudentId.setText(Integer.toString(s.getStudentId()));
         jTextFieldFirstName.setText(s.getFirstName());
         jTextFieldLastName.setText(s.getLastName());
         jTextFieldGpa.setText(Double.toString(s.getGpa()));
+        jComboBoxStatus.setSelectedItem(s.getStatus());
         jTextFieldMentor.setText(s.getMentor());
-        jTextFieldCompany.setText("");
-        jTextFieldThesisTitle.setText("");
-        jTextFieldThesisAdvisor.setText("");
+        jRadioButtonPartTime.setSelected(true);
+        jTextFieldCompany.setText(s.getCompany());
+    }
+
+    private void setFormValues(Undergraduate s) {
+        jTextFieldStudentId.setText(Integer.toString(s.getStudentId()));
+        jTextFieldFirstName.setText(s.getFirstName());
+        jTextFieldLastName.setText(s.getLastName());
+        jTextFieldGpa.setText(Double.toString(s.getGpa()));
+        jComboBoxStatus.setSelectedItem(s.getStatus());
+        jTextFieldMentor.setText(s.getMentor());
+        jComboBoxLevel.setSelectedItem(s.getStatus());
+        jRadioButtonUndergraduate.setSelected(true);
+        jComboBoxLevel.setSelectedItem(s.getLevel());
     }
     
-    private void clearFormValues(){
+    private void setFormValues(Graduate s) {
+        jTextFieldStudentId.setText(Integer.toString(s.getStudentId()));
+        jTextFieldFirstName.setText(s.getFirstName());
+        jTextFieldLastName.setText(s.getLastName());
+        jTextFieldGpa.setText(Double.toString(s.getGpa()));
+        jComboBoxStatus.setSelectedItem(s.getStatus());
+        jTextFieldMentor.setText(s.getMentor());
+        jComboBoxLevel.setSelectedItem(s.getStatus());
+        jRadioButtonGraduate.setSelected(true);
+        jTextFieldThesisTitle.setText(s.getThesisAdvisor());
+        jTextFieldThesisAdvisor.setText(s.getThesisAdvisor());
+    }
+
+    private void clearFormValues() {
         jTextFieldStudentId.setText("");
         jTextFieldFirstName.setText("");
         jTextFieldLastName.setText("");
         jTextFieldGpa.setText("");
+        jComboBoxStatus.setSelectedIndex(-1);
         jTextFieldMentor.setText("");
         jTextFieldCompany.setText("");
         jTextFieldThesisTitle.setText("");
         jTextFieldThesisAdvisor.setText("");
-        
-        
-        
-        // TODO Add the code to blank the drop down boxes.
+        buttonGroupStudentTypeFlag.clearSelection();
+        jTextFieldCompany.setText("");
+        jComboBoxLevel.setSelectedIndex(-1);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -355,7 +443,7 @@ public class MainGui extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupPartUnderGradFlag;
+    private javax.swing.ButtonGroup buttonGroupStudentTypeFlag;
     private javax.swing.JButton jButtonClearAllFields;
     private javax.swing.JButton jButtonCreate;
     private javax.swing.JButton jButtonDelete;

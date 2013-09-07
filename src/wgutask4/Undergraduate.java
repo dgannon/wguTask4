@@ -44,26 +44,26 @@ public class Undergraduate extends Student {
             stmt = conn.makeStatement();
 
             //Create SQL statement to insert
-            stmt.execute("Insert Into student (studentId,firstName,lastName,gpa,status,mentor,company)"
+            stmt.execute("Insert Into student (firstName,lastName,gpa,status,mentor,level)"
                     + " Values ('"
-                    + this.studentId + "','"
-                    + this.firstName + "','"
-                    + this.lastName + "','"
-                    + this.gpa + "','"
-                    + this.status + "','"
-                    + this.mentor + "','"
-                    + this.company + "')");
+                    + this.getFirstName() + "','"
+                    + this.getLastName() + "','"
+                    + this.getGpa() + "','"
+                    + this.getStatus() + "','"
+                    + this.getMentor() + "','"
+                    + this.getLevel() + "')");
 
             stmt.close();
             conn.close();
-            System.out.println("Successfully added media to the database");
-            return true;
+            System.out.println("Successfully added Undergraduate Student to the database");
+            return "";
         } catch (SQLException e) {
-            
-            e.printStackTrace();
+            //e.printStackTrace();
             System.err.println(e.getMessage());
+            System.err.println("MySQL SQL State:" + e.getSQLState());
+            //System.err.pirntln("MySql Error Code:" + getErrorCode());
             System.err.println("Could not insert");
-            return false;
+            return "MySql Error Message: " + e.getMessage() + "MySQL SQL State :" + e.getSQLState();
         }
     }
 

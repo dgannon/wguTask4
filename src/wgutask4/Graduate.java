@@ -57,24 +57,27 @@ public class Graduate extends Student {
 
             //Create SQL statement to insert
 
-            stmt.execute("Insert Into student (studentId,firstName,lastName,gpa,status,mentor,thesisTitle,thesisAdvisor)"
+            stmt.execute("Insert Into student (firstName,lastName,gpa,status,mentor,thesisTitle,thesisAdvisor)"
                     + " Values ('"
-                    + this.studentId + "','"
-                    + this.firstName + "','"
-                    + this.lastName + "','"
-                    + this.gpa + "','"
-                    + this.status + "','"
-                    + this.mentor + "','"
-                    + this.thesisTitle + "','"
-                    + this.thesisAdvisor + "')");
+                    + this.getFirstName() + "','"
+                    + this.getLastName() + "','"
+                    + this.getGpa() + "','"
+                    + this.getStatus() + "','"
+                    + this.getMentor() + "','"
+                    + this.getThesisTitle() + "','"
+                    + this.getThesisAdvisor() + "')");
 
             stmt.close();
             conn.close();
-            System.out.println("Successfully added media to the database");
+            System.out.println("Successfully added Graduate Student to the database");
+            return "";
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.err.println("MySQL SQL State:" + e.getSQLState());
+            //System.err.pirntln("MySql Error Code:" + getErrorCode());
             System.err.println("Could not insert");
-
+            return "MySql Error Message: " + e.getMessage() + "MySQL SQL State :" + e.getSQLState();
         }
 
     }
@@ -108,11 +111,15 @@ public class Graduate extends Student {
             stmt.close();
             conn.close();
             conn.close();
+            return "";
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("ERROR: Either cannot connect to the DB "
-                    + " or error with the SQL statement");
+            System.err.println(e.getMessage());
+            System.err.println("MySQL SQL State:" + e.getSQLState());
+            //System.err.pirntln("MySql Error Code:" + getErrorCode());
+            System.err.println("Could not select student " + studentId);
+            return "MySql Error Message: " + e.getMessage() + "MySQL SQL State :" + e.getSQLState();
         }
     }
 

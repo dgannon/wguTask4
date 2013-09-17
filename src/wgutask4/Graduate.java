@@ -130,12 +130,7 @@ public class Graduate extends Student {
 
     @Override
     public String toString() {
-        return " STUDENT-GRADUATE ID: " + this.getStudentId()
-                + " NAME: " + this.getFirstName() + " " + this.getLastName()
-                + " GPA: " + this.getGpa()
-                + " STATUS: " + this.getStatus()
-                + " MENTOR: " + this.getMentor()
-                + " THESIS TITLE: " + this.getThesisTitle()
+        return super.toString() + " THESIS TITLE: " + this.getThesisTitle()
                 + " THESIS ADVISIOR: " + this.getThesisAdvisor();
     }
 }

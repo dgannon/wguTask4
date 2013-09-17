@@ -170,11 +170,6 @@ public class Parttime extends Student {
 
     @Override
     public String toString() {
-        return " STUDENT-PARTTIME ID: " + this.getStudentId()
-                + " NAME: " + this.getFirstName() + " " + this.getLastName()
-                + " GPA: " + this.getGpa()
-                + " STATUS: " + this.getStatus()
-                + " MENTOR: " + this.getMentor()
-                + " COMPANY: " + this.getCompany();
+        return super.toString() + " COMPANY: " + this.getCompany();
     }
 }

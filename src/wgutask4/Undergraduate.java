@@ -79,11 +79,6 @@ public class Undergraduate extends Student {
 
     @Override
     public String toString() {
-        return " STUDENT-UNDERGRADUATE ID: " + this.getStudentId()
-                + " NAME: " + this.getFirstName() + " " + this.getLastName()
-                + " GPA: " + this.getGpa()
-                + " STATUS: " + this.getStatus()
-                + " MENTOR: " + this.getMentor()
-                + " LEVEL: " + this.getLevel();
+        return super.toString() + " LEVEL: " + this.getLevel();
     }
 }

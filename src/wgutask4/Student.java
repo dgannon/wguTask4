@@ -10,27 +10,26 @@ public abstract class Student {
     protected double gpa;
     protected String status;
     protected String mentor;
-    
     protected static Logger logger = Logger.getLogger("wgutask4.student");
 
     public Student() {
-       logger.fine("Calling Student Default Constructor");
-       this.setStudentId(0);
-       this.setFirstName("");
-       this.setLastName("");
-       this.setGpa(0);
-       this.setStatus("");
-       this.setMentor("");
+        logger.fine("Calling Student Default Constructor");
+        this.setStudentId(0);
+        this.setFirstName("");
+        this.setLastName("");
+        this.setGpa(0);
+        this.setStatus("");
+        this.setMentor("");
     }
-    
-    public Student(int studentId, String firstName, String lastName, double gpa, String status, String mentor){
-       logger.fine("Calling Student Overridden Constructor");
-       this.setStudentId(0);
-       this.setFirstName(firstName);
-       this.setLastName(lastName);
-       this.setGpa(gpa);
-       this.setStatus(status);
-       this.setMentor(mentor);
+
+    public Student(int studentId, String firstName, String lastName, double gpa, String status, String mentor) {
+        logger.fine("Calling Student Overridden Constructor");
+        this.setStudentId(0);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setGpa(gpa);
+        this.setStatus(status);
+        this.setMentor(mentor);
     }
 
     public int getStudentId() {
@@ -92,5 +91,12 @@ public abstract class Student {
     public abstract String delete(int studentId);
 
     @Override
-    public abstract String toString();
+    public String toString() {
+        return " STUDENT ID: " + this.getStudentId()
+                + " NAME: " + this.getFirstName() + " " + this.getLastName()
+                + " GPA: " + this.getGpa()
+                + " STATUS: " + this.getStatus()
+                + " MENTOR: " + this.getMentor();
+    }
+;
 }

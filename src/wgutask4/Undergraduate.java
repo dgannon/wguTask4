@@ -150,7 +150,33 @@ public class Undergraduate extends Student {
 
     @Override
     public String delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Statement stmt = null;
+
+        try {
+            Connect conn = new Connect();
+            stmt = conn.makeStatement();
+            String SqlString = new String();
+            SqlString = "DELETE from student"
+                    + " WHERE "
+                    + "studentid = " + this.getStudentId() + ";";
+
+            //Create SQL statement to insert
+            System.out.println(SqlString);
+            stmt.executeUpdate(SqlString);
+
+            stmt.close();
+            conn.close();
+            System.out.println("Successfully undergraduate deleted student to the database");
+            return "";
+
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.err.println("MySQL SQL State:" + e.getSQLState());
+            //System.err.pirntln("MySql Error Code:" + getErrorCode());
+            System.err.println("Could not delete student " + studentId);
+            return "MySql Error Message: " + e.getMessage() + "MySQL SQL State :" + e.getSQLState();
+        }
     }
 
     @Override

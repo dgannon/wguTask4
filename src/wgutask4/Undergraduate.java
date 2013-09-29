@@ -26,8 +26,15 @@ public class Undergraduate extends Student {
     }
 
     @Override
-    public void calculateTuition() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double calculateTuition(double creditHours) {
+        if (this.getStatus().equalsIgnoreCase("resident")){
+            return creditHours * 200;
+        }
+        else if (this.getStatus().equalsIgnoreCase("non resident")) {
+            return creditHours * 400; 
+        }
+        else
+            return 0;  //This should not happen
     }
 
     @Override

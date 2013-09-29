@@ -80,7 +80,7 @@ public abstract class Student {
         this.mentor = mentor;
     }
 
-    public abstract void calculateTuition();
+    public abstract double calculateTuition(double creditHours);
 
     public abstract String add();
 

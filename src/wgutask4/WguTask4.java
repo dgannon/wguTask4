@@ -16,8 +16,8 @@ public class WguTask4 {
     public static void main(String[] args) {
 
         System.out.println("Hello to Dustin's Student Database!");
-        runToStringTests();
-        runToSqlTests();
+        //runToStringTests();
+        //runToSqlTests();
         
         MainGui myApp = new MainGui();
         myApp.setVisible(true);

@@ -39,24 +39,26 @@ public class Parttime extends Student {
     }
 
     @Override
-    public String update(int studentId) {
+    public String update() {
         Statement stmt = null;
 
         try {
             Connect conn = new Connect();
             stmt = conn.makeStatement();
+            String SqlString = new String();
+            SqlString = "UPDATE student "
+                    + "SET "
+                    + "firstname = " + "'" + this.getFirstName() + "', "
+                    + "lastname = " + "'" + this.getLastName() + "', "
+                    + "gpa = " + "'" + this.getGpa() + "', "
+                    + "status = " + "'" + this.getStatus() + "', "
+                    + "mentor = " + "'" + this.getMentor() + "', "
+                    + "company = " + "'" + this.getCompany() + "' "
+                    + "WHERE studentid = " + this.getStudentId();
 
             //Create SQL statement to insert
-            stmt.execute("UPDATE student "
-                    + " SET ('"
-                    + "StudentID = " + this.getStudentId() + "','"
-                    + "FirstName = " + this.getFirstName() + "','"
-                    + "LastNAme = " + this.getLastName() + "','"
-                    + "GPA = " + this.getGpa() + "','"
-                    + "Status = " + this.getStatus() + "','"
-                    + "Mentor = " + this.getMentor() + "','"
-                    + "Company = " + this.getCompany() + "')"
-                    + "WHERE StudentId = " + this.getStudentId());
+            System.out.println(SqlString);
+            stmt.executeUpdate(SqlString);
 
             stmt.close();
             conn.close();
@@ -148,17 +150,20 @@ public class Parttime extends Student {
     }
 
     @Override
-    public String delete(int studentId) {
+    public String delete() {
         Statement stmt = null;
 
         try {
             Connect conn = new Connect();
             stmt = conn.makeStatement();
+            String SqlString = new String();
+            SqlString = "DELETE from student"
+                    + " WHERE "
+                    + "studentid = " + this.getStudentId() + ";";
 
             //Create SQL statement to insert
-            stmt.execute("DELETE from student"
-                    + " WHERE ('"
-                    + "studentID = " + studentId + ")");
+            System.out.println(SqlString);
+            stmt.executeUpdate(SqlString);
 
             stmt.close();
             conn.close();

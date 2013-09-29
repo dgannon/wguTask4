@@ -86,9 +86,9 @@ public abstract class Student {
 
     public abstract String query(int studentId);
 
-    public abstract String update(int studentId);
+    public abstract String update();
 
-    public abstract String delete(int studentId);
+    public abstract String delete();
 
     @Override
     public String toString() {

@@ -50,7 +50,7 @@ public class Graduate extends Student {
     }
 
     @Override
-    public String update(int studentId) {
+    public String update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -131,7 +131,7 @@ public class Graduate extends Student {
     }
 
     @Override
-    public String delete(int studentId) {
+    public String delete() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

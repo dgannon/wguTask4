@@ -116,6 +116,11 @@ public class MainGui extends javax.swing.JFrame {
         });
 
         jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
 
         jButtonClearAllFields.setText("Clear All Fields");
         jButtonClearAllFields.addActionListener(new java.awt.event.ActionListener() {
@@ -289,6 +294,7 @@ public class MainGui extends javax.swing.JFrame {
         // Create Modal Window to Prompt for Student ID
         LookupDialog studentLookupDialog = new LookupDialog(this, true);
         studentLookupDialog.setVisible(rootPaneCheckingEnabled);
+        
 
         if (studentLookupDialog.getStudentTypeEntered().equals("parttime")) {
             Student studentRecord = new Parttime();
@@ -350,12 +356,67 @@ public class MainGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        LookupDialog studentLookupDialog = new LookupDialog(this, true);
-        studentLookupDialog.setVisible(rootPaneCheckingEnabled);
-        
-        //Todo: implment this crap
+        if (jRadioButtonPartTime.isSelected()) {
+            Parttime s = new Parttime();
+            s.setStudentId(Integer.parseInt(jTextFieldStudentId.getText()));
+            s.setFirstName(jTextFieldFirstName.getText());
+            s.setLastName(jTextFieldLastName.getText());
+            s.setGpa(Double.parseDouble(jTextFieldGpa.getText()));
+            s.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            s.setMentor(jTextFieldMentor.getText());
+            s.setCompany(jTextFieldCompany.getText());
+            System.out.println(s.toString());
+            s.update();
+            this.clearFormValues();
+        } if (jRadioButtonUndergraduate.isSelected()) {
+            Undergraduate s = new Undergraduate();
+            s.setStudentId(Integer.parseInt(jTextFieldStudentId.getText()));
+            s.setFirstName(jTextFieldFirstName.getText());
+            s.setLastName(jTextFieldLastName.getText());
+            s.setGpa(Double.parseDouble(jTextFieldGpa.getText()));
+            s.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            s.setMentor(jTextFieldMentor.getText());
+            s.setLevel(jComboBoxLevel.getSelectedItem().toString());
+            System.out.println(s.toString());
+            s.update();
+            this.clearFormValues();
+        } 
+        if (jRadioButtonGraduate.isSelected()) {
+            Graduate s = new Graduate();
+            s.setStudentId(Integer.parseInt(jTextFieldStudentId.getText()));
+            s.setFirstName(jTextFieldFirstName.getText());
+            s.setLastName(jTextFieldLastName.getText());
+            s.setGpa(Double.parseDouble(jTextFieldGpa.getText()));
+            s.setStatus(jComboBoxStatus.getSelectedItem().toString());
+            s.setMentor(jTextFieldMentor.getText());
+            s.setThesisTitle(jTextFieldThesisTitle.getText());
+            s.setThesisAdvisor(jTextFieldThesisAdvisor.getText());
+            System.out.println(s.toString());
+            s.update();
+            this.clearFormValues();
+        }
         
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        if (jRadioButtonPartTime.isSelected()) {
+            Parttime s = new Parttime();
+            s.setStudentId(Integer.parseInt(jTextFieldStudentId.getText()));
+            s.delete();
+            this.clearFormValues();
+        } if (jRadioButtonUndergraduate.isSelected()) {
+            Undergraduate s = new Undergraduate();
+            s.setStudentId(Integer.parseInt(jTextFieldStudentId.getText()));
+            s.delete();
+            this.clearFormValues();
+        } 
+        if (jRadioButtonGraduate.isSelected()) {
+            Graduate s = new Graduate();
+            s.setStudentId(Integer.parseInt(jTextFieldStudentId.getText()));
+            s.delete();
+            this.clearFormValues();
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void setFormValues(Parttime s) {
         jTextFieldStudentId.setText(Integer.toString(s.getStudentId()));

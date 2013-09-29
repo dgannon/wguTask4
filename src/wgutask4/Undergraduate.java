@@ -40,7 +40,39 @@ public class Undergraduate extends Student {
 
     @Override
     public String update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Statement stmt = null;
+
+        try {
+            Connect conn = new Connect();
+            stmt = conn.makeStatement();
+            String SqlString = new String();
+            SqlString = "UPDATE student "
+                    + "SET "
+                    + "firstname = " + "'" + this.getFirstName() + "', "
+                    + "lastname = " + "'" + this.getLastName() + "', "
+                    + "gpa = " + "'" + this.getGpa() + "', "
+                    + "status = " + "'" + this.getStatus() + "', "
+                    + "mentor = " + "'" + this.getMentor() + "', "
+                    + "level = " + "'" + this.getLevel() + "' "
+                    + "WHERE studentid = " + this.getStudentId();
+
+            //Create SQL statement to insert
+            System.out.println(SqlString);
+            stmt.executeUpdate(SqlString);
+
+            stmt.close();
+            conn.close();
+            System.out.println("Successfully updated Undergrad student in the database");
+            return "";
+
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.err.println("MySQL SQL State:" + e.getSQLState());
+            //System.err.pirntln("MySql Error Code:" + getErrorCode());
+            System.err.println("Could not update studentId" + studentId);
+            return "MySql Error Message: " + e.getMessage() + "MySQL SQL State :" + e.getSQLState();
+        }
     }
 
     @Override

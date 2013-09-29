@@ -174,9 +174,9 @@ public class LookupDialog extends javax.swing.JDialog {
         if(jRadioButtonPartTime.isSelected()) {
             return "parttime";
         }else if(jRadioButtonUnderGraduate.isSelected()) {
-            return "graduate";
-        }else if(jRadioButtonGraduate.isSelected()) {
             return "undergraduate";
+        }else if(jRadioButtonGraduate.isSelected()) {
+            return "graduate";
         } else return null;
     }
         

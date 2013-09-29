@@ -98,7 +98,7 @@ public class Graduate extends Student {
         try {
             Connect conn = new Connect();
             stmt = conn.makeStatement();
-            String sqlst = "Select * FROM media WHERE mediaID = " + this.getStudentId();
+            String sqlst = "Select * FROM student WHERE studentid = " + this.getStudentId();
             rs = stmt.executeQuery(sqlst);
 
             //Parse the result set returned and print

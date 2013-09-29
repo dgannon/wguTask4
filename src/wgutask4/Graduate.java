@@ -93,17 +93,19 @@ public class Graduate extends Student {
     public String query(int studentId) {
         Statement stmt = null;
         ResultSet rs = null;
-        String output = " ";
 
         try {
             Connect conn = new Connect();
             stmt = conn.makeStatement();
-            String sqlst = "Select * FROM student WHERE studentid = " + this.getStudentId();
+            String sqlst = "Select studentID,firstName,lastName,gpa,status,mentor,thesisTitle,ThesisAdvisor"
+                    + " FROM registrar.student"
+                    + " WHERE studentID = " + Integer.toString(studentId);
             rs = stmt.executeQuery(sqlst);
 
             //Parse the result set returned and print
+
             while (rs.next()) {
-                //this.setStudentId(rs.getInt("studentID"));
+                this.setStudentId(rs.getInt("StudentID"));
                 this.setFirstName(rs.getString("firstName"));
                 this.setLastName(rs.getString("lastName"));
                 this.setGpa(rs.getDouble("gpa"));
@@ -117,15 +119,14 @@ public class Graduate extends Student {
             rs.close();
             stmt.close();
             conn.close();
-            conn.close();
             return "";
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
             System.err.println(e.getMessage());
             System.err.println("MySQL SQL State:" + e.getSQLState());
             //System.err.pirntln("MySql Error Code:" + getErrorCode());
-            System.err.println("Could not select student " + studentId);
+            System.err.println("Could not select Graduate student " + studentId);
             return "MySql Error Message: " + e.getMessage() + "MySQL SQL State :" + e.getSQLState();
         }
     }
